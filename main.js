@@ -4,6 +4,7 @@ const shoppingCart = document.querySelector('.navbar-shopping-cart')
 const productDetail = document.querySelector('.product-detail')
 const menu = document.querySelector('.menu')
 const mobileMenu = document.querySelector('.mobile-menu')
+const cardContainer = document.querySelector('.cards-container')
 
 
 menuEmail.addEventListener("click",  toggleDesktopMenuInactive)
@@ -43,4 +44,71 @@ function toggleMenuInactive () {
     }
     mobileMenu.classList.toggle('inactive')
 }
+
+const products = [
+    {
+        name: "bike",
+        price: "20",
+        image: "https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+
+    },
+    {
+        name: "bike",
+        price: "20",
+        image: "https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+
+    },
+    {
+        name: "bike",
+        price: "20",
+        image: "https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+
+    }
+]
+
+
+
+
+function renderProducts (arr, innerTo) {
+    for (product of arr) {
+    
+        const productCard = document.createElement('div')
+        productCard.setAttribute('class', 'product-card')
+
+        const image = document.createElement('img')
+        image.setAttribute('src', 'https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940')
+        
+        const productInfo = document.createElement('div')
+        productInfo.setAttribute('class', 'product-info')
+
+        const container =  document.createElement('div')
+        const price = document.createElement('p')
+        price.innerHTML = `$ ${product.price}`
+        const name = document.createElement('p')
+        name.innerHTML = product.name
+
+        container.appendChild(price)
+        container.appendChild(name)
+
+        const figureEl = document.createElement('figure')
+        const icon = document.createElement('img')
+        icon.setAttribute('src', './icons/bt_add_to_cart.svg')
+        figureEl.appendChild(icon)
+
+
+        productInfo.appendChild(container)
+        productInfo.appendChild(figureEl)
+
+        productCard.appendChild(image)
+        productCard.appendChild(productInfo)
+
+        innerTo.appendChild(productCard)
+       
+
+    }
+    
+}
+
+renderProducts(products, cardContainer )
+
 
